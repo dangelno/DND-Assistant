@@ -1,5 +1,3 @@
-import os
-import openai
 from fastapi import FastAPI, Request, Query
 from fastapi.templating import Jinja2Templates
 from fastapi.staticfiles import StaticFiles
