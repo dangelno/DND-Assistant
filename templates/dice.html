@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Броски кубиков - D&D Assistant</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=MedievalSharp&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Cinzel', serif;
+            background-color: #1a1a1a;
+            color: #e0d6c3;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://www.transparenttextures.com/patterns/old-map.png');
+        }
+        header {
+            text-align: center;
+            padding: 20px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border-bottom: 2px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        header h1 {
+            font-family: 'MedievalSharp', cursive;
+            font-size: 3rem;
+            color: #d4af37;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            margin: 0;
+        }
+        nav {
+            background-color: rgba(26, 26, 26, 0.9);
+            border-bottom: 2px solid #d4af37;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+            padding: 10px;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: #1a1a1a;
+            text-decoration: none;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.2rem;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+        }
+        nav ul li a:hover {
+            background-color: #b8860b;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(26, 26, 26, 0.9);
+            border: 2px solid #d4af37;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
+        }
+        .dice-roller {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(51, 51, 51, 0.8);
+            border-radius: 4px;
+            border: 1px solid #d4af37;
+            color: #e0d6c3;
+        }
+        .dice-roller h2 {
+            color: #d4af37;
+            font-family: 'MedievalSharp', cursive;
+            text-align: center;
+        }
+        .dice-roller label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #d4af37;
+        }
+        .dice-roller select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            border: 1px solid #d4af37;
+            border-radius: 4px;
+            background-color: #333;
+            color: #e0d6c3;
+            font-family: 'Cinzel', serif;
+        }
+        .dice-roller button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-family: 'MedievalSharp', cursive;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+        }
+        .dice-roller button:hover {
+            background-color: #b8860b;
+        }
+        .dice-result {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: rgba(51, 51, 51, 0.8);
+            border-radius: 4px;
+            border: 1px solid #d4af37;
+            color: #e0d6c3;
+            text-align: center;
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Броски кубиков</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="/">Главная</a></li>
+            <li><a href="/pers">Создать персонажа</a></li>
+            <li><a href="/saved">Сохраненные персонажи</a></li>
+            <li><a href="/adventure">Генератор приключений</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="dice-roller">
+            <h2>Бросьте кубик!</h2>
+            <label for="diceType">Выберите тип кубика:</label>
+            <select id="diceType">
+                <option value="4">d4</option>
+                <option value="6">d6</option>
+                <option value="8">d8</option>
+                <option value="10">d10</option>
+                <option value="12">d12</option>
+                <option value="20">d20</option>
+            </select>
+            <button onclick="rollDice()">Бросить кубик</button>
+        </div>
+
+        <div class="dice-result" id="diceResult">
+            <!-- Сюда будет выводиться результат -->
+        </div>
+    </div>
+
+    <script>
+        // Функция для броска кубика
+        function rollDice() {
+            const diceType = document.getElementById('diceType').value;
+            const result = Math.floor(Math.random() * diceType) + 1;
+            const diceResult = document.getElementById('diceResult');
+            diceResult.innerHTML = `
+                <p>Вы бросили d${diceType} и выпало: <strong>${result}</strong></p>
+            `;
+        }
+    </script>
+</body>
+</html>
